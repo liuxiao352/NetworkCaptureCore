@@ -1,5 +1,5 @@
 # 预览
-<img width="300" height="630" src="preview/preview.gif"/>
+<img width="300" height="630" src="preview.gif"/>
 # 接入
 添加 `NetworkCaptureCore` 依赖到你的库或 APP 项目的 `build.gradle` 文件:
 ```groovy
