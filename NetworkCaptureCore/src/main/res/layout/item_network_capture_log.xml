@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground"
+    android:orientation="vertical"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvSchemeHost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="#999"
+            android:textSize="12sp"
+            tools:text="https://matchplay.com" />
+
+        <TextView
+            android:id="@+id/tvCreateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#999"
+            android:textSize="12sp"
+            tools:text="2024.03.12 11:22:00" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvPathQuery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="6dp"
+        android:textColor="?colorPrimary"
+        android:textSize="14sp"
+        tools:text="/api/sport/list" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvMethod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#999"
+            android:textSize="12sp"
+            tools:text="GET" />
+
+        <TextView
+            android:id="@+id/tvResponseCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="#0f0"
+            android:textSize="12sp"
+            tools:text="200" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#999"
+            android:textSize="12sp"
+            tools:text="100ms" />
+
+    </LinearLayout>
+
+</LinearLayout>

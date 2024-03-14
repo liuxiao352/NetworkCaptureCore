@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.NetworkCapture" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimaryDark">#1745C8</item>
+        <item name="colorPrimary">#2B53C5</item>
+        <item name="colorAccent">#2B53C5</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
+</resources>
