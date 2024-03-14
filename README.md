@@ -1,3 +1,5 @@
+# 预览
+<video width="300" height="630" src="Screen_recording_20240314_123042.mp4"/>
 # 接入
 添加 `NetworkCaptureCore` 依赖到你的库或 APP 项目的 `build.gradle` 文件:
 ```groovy
