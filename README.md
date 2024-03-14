@@ -6,9 +6,7 @@ implementation 'com.github.liuxiao352:NetworkCaptureCore:v1.0.1'
 # 使用
 给OkHttp添加`NetworkCaptureInterceptor`拦截器,获取拦截器的方法:
 ```java
-public class NetworkCaptureUtils {
-
-  @Nullable
+ @Nullable
   public static Interceptor getNetworkCaptureInterceptor() {
     try {
       Class<?> clazz =
@@ -18,5 +16,4 @@ public class NetworkCaptureUtils {
       return null;
     }
   }
-}
 ```
