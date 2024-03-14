@@ -2,12 +2,14 @@
 <img width="300" height="630" src="preview.gif"/>
 
 # 接入
-添加 `NetworkCaptureCore` 依赖到项目:
+项目build.gradle添加:
 ```groovy
 repositories {
     maven { url 'https://jitpack.io' }
 }
-
+```
+app模块的build.gradle添加:
+```groovy
 dependencies {
     debugImplementation 'com.github.liuxiao352:NetworkCaptureCore:v1.0.1'
 }
