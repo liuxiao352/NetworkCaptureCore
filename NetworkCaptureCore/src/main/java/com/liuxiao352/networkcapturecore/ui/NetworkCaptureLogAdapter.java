@@ -52,8 +52,12 @@ public class NetworkCaptureLogAdapter extends
     }
     holder.binding.tvSchemeHost.setText(TextUtils.concat(log.getScheme(), "://", log.getHost()));
     holder.binding.tvCreateTime.setText(NetworkCaptureTools.formatTime(log.getCreateTime()));
-    holder.binding.tvPathQuery.setText(
-        TextUtils.concat(log.getPath(), TextUtils.isEmpty(log.getQuery()) ? "" : log.getQuery()));
+    StringBuilder pathQuery = new StringBuilder();
+    pathQuery.append(log.getPath());
+    if (!TextUtils.isEmpty(log.getQuery())) {
+      pathQuery.append("?").append(log.getQuery());
+    }
+    holder.binding.tvPathQuery.setText(pathQuery);
     holder.binding.tvMethod.setText(log.getMethod().toUpperCase(Locale.US));
     holder.binding.tvResponseCode.setTextColor(
         log.getResponseCode() == 200 ? 0xff009688 : 0xffff0000);

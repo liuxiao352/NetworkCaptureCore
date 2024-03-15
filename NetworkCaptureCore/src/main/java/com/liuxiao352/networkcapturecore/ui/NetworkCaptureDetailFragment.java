@@ -87,14 +87,16 @@ public class NetworkCaptureDetailFragment extends Fragment {
     viewModel.getNetworkCaptureDetailLiveData().observe(getViewLifecycleOwner(), detail -> {
       List<Object> list = new ArrayList<>();
       if (type == REQUEST) {
-        String query = detail.getQuery();
-        String url = TextUtils.concat(detail.getScheme(), "://", detail.getHost(), detail.getPath(),
-            TextUtils.isEmpty(query) ? "" : query).toString();
+        StringBuilder url = new StringBuilder(detail.getScheme());
+        url.append("://").append(detail.getHost()).append(detail.getPath());
+        if (!TextUtils.isEmpty(detail.getQuery())) {
+          url.append("?").append(detail.getQuery());
+        }
         SpannableString urlSpannable = new SpannableString(url);
         urlSpannable.setSpan(new ClickableSpan() {
           @Override
           public void onClick(@NonNull View widget) {
-            if (NetworkCaptureTools.setClipText(url)) {
+            if (NetworkCaptureTools.setClipText(url.toString())) {
               Snackbar.make(widget, getString(R.string.nc_copy_success), Snackbar.LENGTH_SHORT)
                   .show();
             }
