@@ -87,13 +87,12 @@ public class NetworkCaptureTools {
     String[] split = json.split("\n");
     StringBuilder sb = new StringBuilder();
     for (int i = 0; i < split.length; i++) {
-      boolean warp = i != 0 && i != split.length - 1 && i % 5 == 0;
-      if (warp) {
+      if (i % 5 == 0) {
         list.add(sb.toString());
         sb = new StringBuilder();
       }
       sb.append(split[i]);
-      if (!warp) {
+      if (i % 5 < 4) {
         sb.append("\n");
       }
     }
