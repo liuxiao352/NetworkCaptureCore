@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     OkHttpClient client =
         new OkHttpClient.Builder().addInterceptor(new NetworkCaptureInterceptor()).build();
     Request request =
-        new Request.Builder().get().url("https://www.wanandroid.com/article/list/0/json").build();
+        new Request.Builder().get().url("https://test.matchplay.com/api/sports-query/score/matches/list?maxTime=2024-09-11 00:00:00 GMT+0800&sportId=sr:sport:1&sortType=1&minTime=2023-09-17 00:00:00 GMT+0800&rollType=1&showOdds=0&startTime=2024-03-15 00:00:00 GMT+0800&showSubscribe=0&live=0").build();
     Call call = client.newCall(request);
     call.enqueue(new Callback() {
       @Override

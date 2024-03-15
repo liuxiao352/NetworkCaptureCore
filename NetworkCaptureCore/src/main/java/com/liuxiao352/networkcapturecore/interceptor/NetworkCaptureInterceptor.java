@@ -1,6 +1,7 @@
 package com.liuxiao352.networkcapturecore.interceptor;
 
 import java.io.IOException;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 
 import android.net.Uri;
@@ -13,6 +14,7 @@ import com.liuxiao352.networkcapturecore.utils.NetworkCaptureTools;
 
 import androidx.annotation.NonNull;
 import okhttp3.Headers;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -28,38 +30,26 @@ public class NetworkCaptureInterceptor implements Interceptor {
   public Response intercept(@NonNull Chain chain) throws IOException {
     Request request = chain.request();
     Response response;
-    long requestTime = System.currentTimeMillis();
-    long responseTime = System.currentTimeMillis();
-    long duration = 0;
     String scheme = "";
     String host = "";
     String query = "";
     String path = "";
-    int responseCode = -1;
     String responseHeader = "";
     String responseBody = "";
-    try {
-      Uri uri = Uri.parse(request.url().toString());
-      if (uri.getScheme() != null) {
-        scheme = uri.getScheme();
-      }
-      if (uri.getHost() != null) {
-        host = uri.getHost();
-      }
-      if (uri.getQuery() != null) {
-        query = uri.getQuery();
-      }
-      if (uri.getPath() != null) {
-        path = uri.getPath();
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
     String method = request.method();
     String requestHeader = "";
     String requestBody = "";
     String requestContentType = "";
+    int responseCode = -1;
+    long requestTime = System.currentTimeMillis();
+    long responseTime = requestTime;
+    long duration = 0;
     try {
+      HttpUrl url = request.url();
+      scheme = url.scheme();
+      host = url.host();
+      query = url.query();
+      path = url.encodedPath();
       requestHeader = NetworkCaptureTools.toJson(request.headers().toMultimap());
       if (request.body() != null) {
         MediaType mediaType = request.body().contentType();
@@ -81,10 +71,6 @@ public class NetworkCaptureInterceptor implements Interceptor {
           requestBody = buffer.readString(StandardCharsets.UTF_8);
         }
       }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    try {
       response = chain.proceed(request);
       responseTime = System.currentTimeMillis();
       duration = responseTime - requestTime;
