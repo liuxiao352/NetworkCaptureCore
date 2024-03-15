@@ -5,6 +5,7 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 
 import android.net.Uri;
+import android.util.Log;
 
 
 import com.liuxiao352.networkcapturecore.database.NetworkCaptureDatabase;
@@ -24,6 +25,8 @@ import okio.Buffer;
 import okio.BufferedSource;
 
 public class NetworkCaptureInterceptor implements Interceptor {
+
+  public static final long MAX_BYTES = 1048576;
 
   @NonNull
   @Override
@@ -56,10 +59,14 @@ public class NetworkCaptureInterceptor implements Interceptor {
         if (mediaType != null) {
           requestContentType = mediaType.toString();
         }
+        if (request.body().contentLength() > MAX_BYTES) {
+          requestBody = "Too large";
+        }
         if (request.body() instanceof MultipartBody) {
           for (MultipartBody.Part part : ((MultipartBody) request.body()).parts()) {
             Headers headers = part.headers();
             if (headers != null && headers.size() > 0) {
+              requestBody = requestBody.concat("\n");
               for (int i = 0; i < headers.size(); i++) {
                 requestBody = requestBody.concat(headers.value(i));
               }
@@ -77,10 +84,14 @@ public class NetworkCaptureInterceptor implements Interceptor {
       responseCode = response.code();
       responseHeader = NetworkCaptureTools.toJson(response.headers().toMultimap());
       if (response.body() != null) {
-        BufferedSource source = response.body().source();
-        source.request(Long.MAX_VALUE);
-        Buffer buffer = source.getBuffer();
-        responseBody = buffer.clone().readString(StandardCharsets.UTF_8);
+        if (response.body().contentLength() > MAX_BYTES) {
+          responseBody = "Too large";
+        } else {
+          BufferedSource source = response.body().source();
+          source.request(Long.MAX_VALUE);
+          Buffer buffer = source.getBuffer();
+          responseBody = buffer.clone().readString(StandardCharsets.UTF_8);
+        }
       }
       return response;
     } catch (IOException e) {

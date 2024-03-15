@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
     OkHttpClient client =
         new OkHttpClient.Builder().addInterceptor(new NetworkCaptureInterceptor()).build();
     Request request =
-        new Request.Builder().get().url("https://test.matchplay.com/api/sports-query/score/matches/list?maxTime=2024-09-11 00:00:00 GMT+0800&sportId=sr:sport:1&sortType=1&minTime=2023-09-17 00:00:00 GMT+0800&rollType=1&showOdds=0&startTime=2024-03-15 00:00:00 GMT+0800&showSubscribe=0&live=0").build();
+        new Request.Builder().get().url("\n" +
+            "https://a241980011c4cf29fa436afeb37d6180.dlied1.cdntips.net/imtt2.dd.qq.com/sjy.00009/sjy.00004/16891/apk/5CBCC45758184DF2688A2B322CEC4C54.apk?mkey=lego_ztc&f=00&sche_type=7&fsname=com.xunmeng.pinduoduo_7.1.0.apk&cip=222.128.0.50&proto=https").build();
     Call call = client.newCall(request);
     call.enqueue(new Callback() {
       @Override
