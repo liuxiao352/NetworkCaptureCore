@@ -11,7 +11,7 @@ repositories {
 app模块的build.gradle:
 ```groovy
 dependencies {
-    debugImplementation 'com.github.liuxiao352:NetworkCaptureCore:v1.0.3'
+    debugImplementation 'com.github.liuxiao352:NetworkCaptureCore:v1.0.5'
 }
 ```
 
