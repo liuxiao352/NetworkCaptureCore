@@ -59,16 +59,16 @@ public class NetworkCaptureInterceptor implements Interceptor {
         if (mediaType != null) {
           requestContentType = mediaType.toString();
         }
-        if (request.body().contentLength() > MAX_BYTES) {
+        if (request.body().contentLength() > MAX_BYTES || request.body() instanceof MultipartBody) {
           requestBody = "Too large";
-        }
-        if (request.body() instanceof MultipartBody) {
-          for (MultipartBody.Part part : ((MultipartBody) request.body()).parts()) {
-            Headers headers = part.headers();
-            if (headers != null && headers.size() > 0) {
-              requestBody = requestBody.concat("\n");
-              for (int i = 0; i < headers.size(); i++) {
-                requestBody = requestBody.concat(headers.value(i));
+          if (request.body() instanceof MultipartBody) {
+            for (MultipartBody.Part part : ((MultipartBody) request.body()).parts()) {
+              Headers headers = part.headers();
+              if (headers != null && headers.size() > 0) {
+                requestBody = requestBody.concat("\n");
+                for (int i = 0; i < headers.size(); i++) {
+                  requestBody = requestBody.concat(headers.value(i));
+                }
               }
             }
           }
