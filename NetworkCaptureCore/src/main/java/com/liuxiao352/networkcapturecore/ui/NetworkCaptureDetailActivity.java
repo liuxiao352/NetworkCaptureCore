@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.liuxiao352.networkcapturecore.R;
 import com.liuxiao352.networkcapturecore.databinding.ActiviyNetworkCaptureDetailBinding;
 import com.liuxiao352.networkcapturecore.viewmodel.NetworkCaptureDetailViewModel;
 
@@ -20,8 +21,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 public class NetworkCaptureDetailActivity extends AppCompatActivity {
 
   private static final String EXTRA_ID = "id";
-  private static final String[] TABS = { "请求", "响应" };
   private ActiviyNetworkCaptureDetailBinding binding;
+  private String[] tabs;
 
   public static void start(Context context, long id) {
     Intent starter = new Intent(context, NetworkCaptureDetailActivity.class);
@@ -34,10 +35,11 @@ public class NetworkCaptureDetailActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     long id = getIntent().getLongExtra(EXTRA_ID, -1);
     if (id < 0) {
-      Toast.makeText(this, "查询的id不存在", Toast.LENGTH_SHORT).show();
+      Toast.makeText(this, getString(R.string.nc_id_does_not_exist), Toast.LENGTH_SHORT).show();
       finish();
       return;
     }
+    tabs = getResources().getStringArray(R.array.detail_tabs);
     new ViewModelProvider(this).get(NetworkCaptureDetailViewModel.class)
         .fetchNetworkCaptureDetail(id);
     binding = ActiviyNetworkCaptureDetailBinding.inflate(getLayoutInflater());
@@ -48,11 +50,11 @@ public class NetworkCaptureDetailActivity extends AppCompatActivity {
   private void initViewPager() {
     binding.viewPager.setAdapter(new ViewPagerAdapter(this));
     new TabLayoutMediator(binding.tabLayout, binding.viewPager, (tab, position) -> {
-      tab.setText(TABS[position]);
+      tab.setText(tabs[position]);
     }).attach();
   }
 
-  static class ViewPagerAdapter extends FragmentStateAdapter {
+  class ViewPagerAdapter extends FragmentStateAdapter {
 
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
       super(fragmentActivity);
@@ -68,7 +70,7 @@ public class NetworkCaptureDetailActivity extends AppCompatActivity {
 
     @Override
     public int getItemCount() {
-      return TABS.length;
+      return tabs.length;
     }
   }
 }

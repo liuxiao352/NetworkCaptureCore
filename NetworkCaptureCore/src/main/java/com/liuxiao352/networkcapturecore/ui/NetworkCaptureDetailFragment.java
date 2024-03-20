@@ -131,7 +131,7 @@ public class NetworkCaptureDetailFragment extends Fragment {
         responseBodyJson = detail.getResponseBody();
         List<String> jsonList = NetworkCaptureTools.getJsonList(responseBodyJson);
         list.add(new KeyValue(getString(R.string.nc_body),
-            jsonList.size() == 0 ? getString(R.string.nc_none) : ""));
+            jsonList.isEmpty() ? getString(R.string.nc_none) : ""));
         list.addAll(jsonList);
       }
       adapter.setList(list);

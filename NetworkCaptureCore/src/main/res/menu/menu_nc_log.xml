@@ -5,7 +5,7 @@
     <item
         android:id="@+id/clear_network_capture_log"
         android:icon="@drawable/nc_ic_clear"
-        android:title="清空"
+        android:title="@string/nc_clear"
         app:showAsAction="ifRoom"
         tools:ignore="HardcodedText" />
 </menu>

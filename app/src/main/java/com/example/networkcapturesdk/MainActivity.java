@@ -24,8 +24,7 @@ public class MainActivity extends AppCompatActivity {
     OkHttpClient client =
         new OkHttpClient.Builder().addInterceptor(new NetworkCaptureInterceptor()).build();
     Request request =
-        new Request.Builder().get().url("\n" +
-            "https://a241980011c4cf29fa436afeb37d6180.dlied1.cdntips.net/imtt2.dd.qq.com/sjy.00009/sjy.00004/16891/apk/5CBCC45758184DF2688A2B322CEC4C54.apk?mkey=lego_ztc&f=00&sche_type=7&fsname=com.xunmeng.pinduoduo_7.1.0.apk&cip=222.128.0.50&proto=https").build();
+        new Request.Builder().get().url("https://www.wanandroid.com/banner/json").build();
     Call call = client.newCall(request);
     call.enqueue(new Callback() {
       @Override

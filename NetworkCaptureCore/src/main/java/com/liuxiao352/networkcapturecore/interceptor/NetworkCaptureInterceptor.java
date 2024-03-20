@@ -1,12 +1,9 @@
 package com.liuxiao352.networkcapturecore.interceptor;
 
 import java.io.IOException;
-import java.net.URI;
 import java.nio.charset.StandardCharsets;
 
-import android.net.Uri;
-import android.util.Log;
-
+import android.text.TextUtils;
 
 import com.liuxiao352.networkcapturecore.database.NetworkCaptureDatabase;
 import com.liuxiao352.networkcapturecore.entity.NetworkCaptureDetail;
@@ -96,6 +93,13 @@ public class NetworkCaptureInterceptor implements Interceptor {
       return response;
     } catch (IOException e) {
       responseBody = e.getMessage();
+      if (!TextUtils.isEmpty(responseBody)) {
+        if (responseBody.contains("443")) {
+          responseCode = 443;
+        } else if (responseBody.contains("403")) {
+          responseCode = 403;
+        }
+      }
       throw new IOException();
     } finally {
       NetworkCaptureLog log =

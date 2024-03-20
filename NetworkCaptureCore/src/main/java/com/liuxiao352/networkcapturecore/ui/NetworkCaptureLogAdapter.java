@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-
 import com.liuxiao352.networkcapturecore.databinding.ItemNetworkCaptureLogBinding;
 import com.liuxiao352.networkcapturecore.entity.NetworkCaptureLog;
 import com.liuxiao352.networkcapturecore.utils.NetworkCaptureTools;
@@ -14,10 +13,9 @@ import com.liuxiao352.networkcapturecore.utils.NetworkCaptureTools;
 import androidx.annotation.NonNull;
 import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class NetworkCaptureLogAdapter extends
-    PagedListAdapter<NetworkCaptureLog, NetworkCaptureLogAdapter.NetworkCaptureViewHolder> {
+    PagedListAdapter<NetworkCaptureLog, NetworkCaptureViewHolder> {
 
   protected NetworkCaptureLogAdapter() {
     super(new DiffUtil.ItemCallback<NetworkCaptureLog>() {
@@ -41,7 +39,14 @@ public class NetworkCaptureLogAdapter extends
     LayoutInflater inflater = LayoutInflater.from(parent.getContext());
     ItemNetworkCaptureLogBinding binding =
         ItemNetworkCaptureLogBinding.inflate(inflater, parent, false);
-    return new NetworkCaptureViewHolder(binding);
+    NetworkCaptureViewHolder holder = new NetworkCaptureViewHolder(binding);
+    binding.getRoot().setOnClickListener(v -> {
+      NetworkCaptureLog captureLog = getItem(holder.getAdapterPosition());
+      if (captureLog != null) {
+        NetworkCaptureDetailActivity.start(v.getContext(), captureLog.getId());
+      }
+    });
+    return holder;
   }
 
   @Override
@@ -63,20 +68,5 @@ public class NetworkCaptureLogAdapter extends
         log.getResponseCode() == 200 ? 0xff009688 : 0xffff0000);
     holder.binding.tvResponseCode.setText(String.valueOf(log.getResponseCode()));
     holder.binding.tvDuration.setText(String.format("%sms", log.getDuration()));
-  }
-
-  final class NetworkCaptureViewHolder extends RecyclerView.ViewHolder {
-    private final ItemNetworkCaptureLogBinding binding;
-
-    public NetworkCaptureViewHolder(@NonNull ItemNetworkCaptureLogBinding binding) {
-      super(binding.getRoot());
-      this.binding = binding;
-      itemView.setOnClickListener(v -> {
-        NetworkCaptureLog captureLog = getItem(getAdapterPosition());
-        if (captureLog != null) {
-          NetworkCaptureDetailActivity.start(v.getContext(), captureLog.getId());
-        }
-      });
-    }
   }
 }

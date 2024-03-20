@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="detail_tabs">
+        <item>@string/request</item>
+        <item>@string/response</item>
+    </array>
+</resources>

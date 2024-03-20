@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="nc_app_name">抓包</string>
-    <string name="nc_title">请求列表</string>
-    <string name="nc_clear">清空</string>
-    <string name="nc_copy_success">复制到粘贴板成功</string>
+    <string name="nc_app_name">NetworkCapture</string>
+    <string name="nc_title">Request List</string>
+    <string name="nc_clear">Clear</string>
+    <string name="nc_copy_success">Copy to clipboard successful</string>
     <string name="nc_url">Url</string>
     <string name="nc_method">Method</string>
     <string name="nc_headers">Headers</string>
@@ -12,4 +12,7 @@
     <string name="nc_response_code">ResponseCode</string>
     <string name="nc_response_time">ResponseTime</string>
     <string name="nc_body">Body</string>
+    <string name="nc_id_does_not_exist">The id queried does not exist</string>
+    <string name="request">Request</string>
+    <string name="response">Response</string>
 </resources>

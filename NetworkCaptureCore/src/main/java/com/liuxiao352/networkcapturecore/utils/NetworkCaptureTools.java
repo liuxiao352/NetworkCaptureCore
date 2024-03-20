@@ -45,7 +45,7 @@ public class NetworkCaptureTools {
   private static DateFormat timeDataFormat;
 
   public static void init(Context context) {
-    NetworkCaptureTools.context = (Application) context;
+    NetworkCaptureTools.context = context;
     singleThreadExecutor = Executors.newSingleThreadExecutor();
     gson = new GsonBuilder().setPrettyPrinting()
         .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
