@@ -1,5 +1,6 @@
 # 预览
 <img width="300" height="630" src="preview.gif"/>
+<img width="300" height="630" src="preview2.gif"/>
 
 # 接入
 项目build.gradle:
