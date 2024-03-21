@@ -21,6 +21,18 @@ import okhttp3.Response;
 import okio.Buffer;
 import okio.BufferedSource;
 
+/**
+ *  @Nullable
+ *   public static Interceptor getNetworkCaptureInterceptor() {
+ *     try {
+ *       Class<?> clazz =
+ *           Class.forName("com.liuxiao352.networkcapturecore.interceptor.NetworkCaptureInterceptor");
+ *       return (Interceptor) clazz.getDeclaredConstructor().newInstance();
+ *     } catch (Exception e) {
+ *       return null;
+ *     }
+ *   }
+ */
 public class NetworkCaptureInterceptor implements Interceptor {
 
   public static final long MAX_BYTES = 1048576;
