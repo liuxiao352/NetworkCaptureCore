@@ -18,8 +18,8 @@ dependencies {
 
 # 使用
 给OkHttp添加`NetworkCaptureInterceptor`拦截器:<br/> 
-在WebViewClient的`onPageStarted`方法注入`VConsole`JS:
-获取拦截器和JS的方法:
+在WebViewClient的`onPageStarted`方法里调用`webView.evaluateJavascript(vConsoleJs, null);`:<br/> 
+获取`NetworkCaptureInterceptor`和`vConsoleJs`的方法:
 ```java
  public class NetworkCaptureUtils {
 
