@@ -18,7 +18,9 @@ dependencies {
 # 使用
 给OkHttp添加`NetworkCaptureInterceptor`拦截器,获取拦截器的方法:
 ```java
- @Nullable
+ public class NetworkCaptureUtils {
+
+  @Nullable
   public static Interceptor getNetworkCaptureInterceptor() {
     try {
       Class<?> clazz =
@@ -28,4 +30,16 @@ dependencies {
       return null;
     }
   }
+
+  @Nullable
+  public static String getVConsoleJs() {
+    try {
+      Class<?> clazz =
+          Class.forName("com.liuxiao352.networkcapturecore.utils.NetworkCaptureWebTools");
+      return Objects.requireNonNull(clazz.getMethod("getVConsoleJs").invoke(null)).toString();
+    } catch (Exception e) {
+      return null;
+    }
+  }
+}
 ```
