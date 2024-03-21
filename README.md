@@ -17,7 +17,7 @@ dependencies {
 ```
 
 # 使用
-给OkHttp添加`NetworkCaptureInterceptor`拦截器:\n
+给OkHttp添加`NetworkCaptureInterceptor`拦截器:<br/> 
 在WebViewClient的`onPageStarted`方法注入`VConsole`JS:
 获取拦截器和JS的方法:
 ```java
