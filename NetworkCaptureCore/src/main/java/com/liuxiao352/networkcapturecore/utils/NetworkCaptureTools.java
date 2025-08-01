@@ -12,7 +12,6 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -50,6 +49,7 @@ public class NetworkCaptureTools {
     gson = new GsonBuilder().setPrettyPrinting()
         .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
     timeDataFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.US);
+    new ShortcutHelper(context).createShortcuts();
   }
 
   public static Context getContext() {

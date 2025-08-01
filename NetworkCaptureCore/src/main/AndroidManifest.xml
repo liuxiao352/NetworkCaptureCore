@@ -16,7 +16,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NetworkCapture" />
 
-        <activity-alias
+        <!--<activity-alias
             android:name=".NetworkCaptureLogActivity"
             android:exported="true"
             android:label="@string/nc_app_name"
@@ -27,7 +27,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity-alias>
+        </activity-alias>-->
 
         <provider
             android:name=".provider.NetworkCaptureContextProvider"
